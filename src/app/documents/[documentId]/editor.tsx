@@ -14,6 +14,8 @@ import useEditorStore from "@/app/store/use-editor-store";
 import {Underline} from "@tiptap/extension-underline";
 import {FontFamily} from "@tiptap/extension-font-family";
 import {TextStyle} from "@tiptap/extension-text-style";
+import {Color} from "@tiptap/extension-color";
+import {Highlight} from "@tiptap/extension-highlight";
 
 function Editor() {
     const {setEditor} = useEditorStore()
@@ -49,9 +51,26 @@ function Editor() {
                 class : "focus:outline-none print:border-0 bg-white border border-[#C7C7C7] flex flex-col min-h-[1054px] w-[816px] pt-10 pb-10"
             }
         },
-        extensions : [StarterKit,FontFamily,TextStyle,Underline,Image,ImageResize,Table,TableCell,TableHeader,TableRow,TaskList,TaskItem.configure({
-            nested : true
-        })],
+        extensions : [
+            StarterKit,
+            Color,
+            Highlight.configure({
+                multicolor : true
+            }),
+            FontFamily,
+            TextStyle,
+            Underline,
+            Image,
+            ImageResize,
+            Table,
+            TableCell,
+            TableHeader,
+            TableRow,
+            TaskList,
+            TaskItem.configure({
+                nested : true
+            },
+        )],
     });
     return (
         <div className="size-full overflow-x-auto bg-[#F9FBFD] print:p-0 print:bg-white print:overflow-visible">
