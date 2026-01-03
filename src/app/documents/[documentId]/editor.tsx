@@ -18,11 +18,15 @@ import {Color} from "@tiptap/extension-color";
 import {Highlight} from "@tiptap/extension-highlight";
 import {Link} from "@tiptap/extension-link";
 import {TextAlign} from "@tiptap/extension-text-align";
+import {FontSizeExtension} from "@/extensions/font-size";
+import {LineHeightExtension} from "@/extensions/line-height";
+import Ruler from "@/app/documents/[documentId]/ruler";
 
 function Editor() {
     const {setEditor} = useEditorStore()
 
     const editor = useEditor({
+        immediatelyRender : false,
         onCreate({editor}){
             setEditor(editor)
         },
@@ -55,6 +59,11 @@ function Editor() {
         },
         extensions : [
             StarterKit,
+            FontSizeExtension,
+            LineHeightExtension.configure({
+                types : ["heading","paragraph"],
+                defaultLineHeight: "normal"
+            }),
             Color,
             Highlight.configure({
                 multicolor : true
@@ -84,6 +93,7 @@ function Editor() {
     });
     return (
         <div className="size-full overflow-x-auto bg-[#F9FBFD] print:p-0 print:bg-white print:overflow-visible">
+            <Ruler/>
             <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
                 <EditorContent editor={editor}/>
             </div>
