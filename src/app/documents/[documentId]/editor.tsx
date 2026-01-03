@@ -18,6 +18,7 @@ import {Color} from "@tiptap/extension-color";
 import {Highlight} from "@tiptap/extension-highlight";
 import {Link} from "@tiptap/extension-link";
 import {TextAlign} from "@tiptap/extension-text-align";
+import {FontSizeExtension} from "@/extensions/font-size";
 
 function Editor() {
     const {setEditor} = useEditorStore()
@@ -55,6 +56,7 @@ function Editor() {
         },
         extensions : [
             StarterKit,
+            FontSizeExtension,
             Color,
             Highlight.configure({
                 multicolor : true
