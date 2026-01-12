@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchInput from "./serch-input"
+import {UserButton} from "@clerk/nextjs"
 
 function Navbar() {
     return (
@@ -15,7 +16,7 @@ function Navbar() {
                 <h3 className="text-xl">Docly</h3>
             </div>
             <SearchInput></SearchInput>
-            <div/>
+            <UserButton></UserButton>
         </nav>
     )
 }
