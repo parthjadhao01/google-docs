@@ -4,7 +4,8 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchInput from "./serch-input"
-import {UserButton} from "@clerk/nextjs"
+import {OrganizationSwitcher, UserButton} from "@clerk/nextjs"
+
 
 function Navbar() {
     return (
@@ -16,7 +17,15 @@ function Navbar() {
                 <h3 className="text-xl">Docly</h3>
             </div>
             <SearchInput></SearchInput>
-            <UserButton></UserButton>
+            <div>
+                <OrganizationSwitcher
+                    afterCreateOrganizationUrl="/"
+                    afterLeaveOrganizationUrl="/"
+                    afterSelectOrganizationUrl="/"
+                    afterSelectPersonalUrl="/"
+                />
+                <UserButton></UserButton>
+            </div>
         </nav>
     )
 }
