@@ -15,7 +15,7 @@ import {
     ChevronsDownIcon,
     HighlighterIcon,
     Link2Icon, ImageIcon, UploadIcon, SearchIcon, AlignLeftIcon, AlignCenterIcon, AlignRightIcon, AlignJustifyIcon,
-    ListIcon, ListOrderedIcon, MinusIcon, PlusIcon, ListCollapseIcon
+    ListIcon, ListOrderedIcon, MinusIcon, PlusIcon, ListCollapseIcon, MessageSquarePlusIcon
 } from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
@@ -613,9 +613,9 @@ function Toolbar() {
         [
             {
                 lable : "Comment",
-                icon : MessageSquareIcon,
-                onClick : ()=> console.log("Todo : comment"),
-                isActive : false
+                icon : MessageSquarePlusIcon,
+                onClick : ()=> editor?.chain().focus().addPendingComment().run(),
+                isActive : editor?.isActive("liveblocksCommetMark")
             },
             {
                 lable : "List Todo",
