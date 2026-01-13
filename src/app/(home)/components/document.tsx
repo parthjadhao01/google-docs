@@ -5,7 +5,9 @@ import {SiGoogledocs} from "react-icons/si";
 import {Building2Icon, CircleUserIcon, MoreVertical} from "lucide-react";
 import {format} from "date-fns";
 import {Button} from "@/components/ui/button";
+
 import DocumentMenu from "@/app/(home)/components/document-menu";
+import {useRouter} from "next/navigation";
 
 interface DocumentRowProps {
     document : Doc<"documents">
@@ -13,12 +15,21 @@ interface DocumentRowProps {
 
 
 function DocumentRow({document} : DocumentRowProps) {
+    const router = useRouter();
+
+    const onRowClick = (id : string) => {
+        router.push(`/documents/${id}`);
+    }
+
     const onNewTabClick = (id : string) => {
         window.open(`/documents/${id}`,"_blank");
     }
 
     return (
-        <TableRow className="cursor-pointer">
+        <TableRow
+            onClick={()=> onRowClick(document._id)}
+            className="cursor-pointer"
+        >
             <TableCell className="w-[50px]">
                 <SiGoogledocs className="size-6 fill-blue-500"/>
             </TableCell>
@@ -27,7 +38,7 @@ function DocumentRow({document} : DocumentRowProps) {
             </TableCell>
             <TableCell className="text-muted-foreground hidden md:flex items-center gap-2">
                 {document.organizationId ? <Building2Icon className="size-4"/> : <CircleUserIcon className="size-4"/>}
-                {document.organizationId ? "Organization" : "Personal"}
+                {document.organizationId===undefined ? "Personal" : "Organization"}
             </TableCell>
             <TableCell className="text-muted-foreground hidden md:table-cell">
                 {format(new Date(document._creationTime), "MMM dd,yyyy")}
